@@ -28,18 +28,4 @@ export default function RootLayout({
   );
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <AppThemeProvider>
-          <ClientLayout>{children}</ClientLayout>
-        </AppThemeProvider>
-      </body>
-    </html>
-  );
-}
+
