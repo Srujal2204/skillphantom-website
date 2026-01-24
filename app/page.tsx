@@ -5,6 +5,34 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Outfit, Inter } from "next/font/google";
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'SkillPhantom Technologies | Bridging the Industry-Academia Gap',
+  description: 'SkillPhantom Technologies provides industrial-grade training in Cybersecurity and Web Architecture. We bridge the gap between academic theory and real-world execution.',
+  openGraph: {
+    title: 'SkillPhantom Technologies - Official',
+    description: 'Master industrial skills with expert-led training in Cybersecurity and Web Systems.',
+    url: 'https://skillphantomtechnologies.in/',
+    siteName: 'SkillPhantom Technologies',
+    images: [
+      {
+        url: 'https://skillphantomtechnologies.in/logo.png', // Aapka logo path
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SkillPhantom Technologies',
+    description: 'Bridging the critical divide between academic theory and industrial execution.',
+    images: ['https://skillphantomtechnologies.in/logo.png'],
+  },
+}
+
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "600", "700", "800"] });
 const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "500"] });
 
