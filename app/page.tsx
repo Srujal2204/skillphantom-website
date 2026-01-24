@@ -15,7 +15,7 @@ export default function HomePage() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => setGlow({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", handleMouseMove);
-    const timer = setTimeout(() => setLoading(false), 2000);
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       clearTimeout(timer);
@@ -24,163 +24,158 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ================= PREMIUM LOADER ================= */}
+      {/* ================= ADAPTIVE LOADER ================= */}
       <AnimatePresence>
         {loading && (
           <motion.div
-            exit={{ opacity: 0, filter: "blur(20px)" }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black"
+            exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white dark:bg-black transition-colors duration-500"
           >
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center">
-              <h1 className={`${outfit.className} text-white text-4xl font-bold tracking-[0.4em] uppercase mb-4`}>
+              <h1 className={`${outfit.className} text-slate-900 dark:text-white text-4xl font-black tracking-[0.4em] uppercase mb-6`}>
                 SkillPhantom
               </h1>
-              <div className="w-64 h-[2px] bg-white/10 relative overflow-hidden">
-                <motion.div animate={{ x: ["-100%", "100%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }} className="absolute inset-0 bg-blue-600 w-full" />
+              <div className="w-48 h-[2px] bg-slate-100 dark:bg-white/10 relative overflow-hidden">
+                <motion.div 
+                  animate={{ x: ["-100%", "100%"] }} 
+                  transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }} 
+                  className="absolute inset-0 bg-blue-600 w-full" 
+                />
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <main className={`relative bg-[#050505] text-white min-h-screen overflow-hidden ${inter.className}`}>
+      <main className={`relative bg-slate-50 dark:bg-[#050505] text-slate-900 dark:text-white min-h-screen transition-colors duration-500 overflow-hidden ${inter.className}`}>
         
-        {/* 🌌 DYNAMIC BACKGROUND */}
-        <div className="pointer-events-none fixed inset-0 z-0 opacity-40 transition-opacity duration-500"
-          style={{ background: `radial-gradient(800px circle at ${glow.x}px ${glow.y}px, rgba(37, 99, 235, 0.12), transparent 80%)` }}
+        {/* 🌌 DYNAMIC MOUSE GLOW */}
+        <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.08] dark:opacity-20 transition-opacity duration-700"
+          style={{ background: `radial-gradient(800px circle at ${glow.x}px ${glow.y}px, #3b82f6, transparent 80%)` }}
         />
 
         {/* ================= 1. HERO SECTION ================= */}
-        <header className="relative z-10 pt-44 pb-32 px-6 text-center max-w-7xl mx-auto">
+        <header className="relative z-10 pt-48 pb-32 px-6 text-center max-w-7xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold tracking-widest uppercase backdrop-blur-md">
+            className="inline-flex items-center gap-2 mb-10 px-6 py-2 rounded-full bg-blue-600/5 dark:bg-blue-500/10 border border-blue-600/10 dark:border-blue-500/20 text-blue-600 dark:text-blue-400 text-[10px] font-black tracking-[0.2em] uppercase backdrop-blur-md">
             SkillPhantom Technologies • Global Excellence
           </motion.div>
 
-          <h1 className={`${outfit.className} text-6xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.95]`}>
-            Build Skills. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-indigo-500">
-              Earn Proof.
+          <h1 className={`${outfit.className} text-6xl md:text-9xl font-black tracking-tighter mb-10 leading-[0.9] text-slate-900 dark:text-white`}>
+            Build Skills <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 dark:from-blue-400 dark:via-white dark:to-indigo-500">
+              Earn Proof
             </span>
           </h1>
 
-          <p className="text-gray-400 text-lg md:text-2xl max-w-4xl mx-auto mb-12 leading-relaxed font-light">
+          <p className="text-slate-500 dark:text-gray-400 text-lg md:text-2xl max-w-4xl mx-auto mb-16 leading-relaxed font-medium">
             Empowering <strong>Grade 6-12 students</strong> with tech foundations and <strong>College Graduates</strong> with industry-led internships. Globally trusted in 5+ countries.
           </p>
 
           <div className="flex flex-wrap justify-center gap-6">
-            <Link href="#explore" className="px-12 py-5 bg-white text-black font-bold rounded-full hover:scale-105 transition shadow-[0_0_30px_rgba(255,255,255,0.15)]">Explore Programs</Link>
-            <Link href="/contact" className="px-12 py-5 border border-white/20 rounded-full hover:bg-white/5 transition font-bold backdrop-blur-sm">Contact Experts</Link>
+            <Link href="#explore" className="px-12 py-5 bg-blue-600 text-white dark:bg-white dark:text-black font-black rounded-full hover:scale-105 transition shadow-2xl shadow-blue-500/20">
+              Explore Programs
+            </Link>
+            <Link href="/contact" className="px-12 py-5 border border-slate-200 dark:border-white/20 rounded-full hover:bg-slate-100 dark:hover:bg-white/5 transition font-black backdrop-blur-sm text-slate-900 dark:text-white">
+              Contact Experts
+            </Link>
           </div>
         </header>
 
-        {/* ================= 2. THE DUAL EDGE SECTION (SKILL + CERT) ================= */}
-        <section className="relative z-10 py-24 px-6 bg-white/[0.02] border-y border-white/5">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <h2 className={`${outfit.className} text-4xl md:text-5xl font-bold leading-tight`}>
-                "Skill over Certificate" — <br/><span className="text-blue-500 italic">But why not both?</span>
+        {/* ================= 2. THE DUAL EDGE SECTION ================= */}
+        <section className="relative z-10 py-32 px-6 bg-white dark:bg-white/[0.01] border-y border-slate-200 dark:border-white/5 transition-colors">
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-10">
+              <h2 className={`${outfit.className} text-4xl md:text-6xl font-black leading-tight text-slate-900 dark:text-white`}>
+                Skill over Degree <br/><span className="text-blue-600 italic">But why not both?</span>
               </h2>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                SkillPhantom par humara focus 100% practical knowledge pe hai. Hum maante hain ki kaagaz se zyada aapka code bolna chahiye. Isliye:
+              <p className="text-slate-500 dark:text-gray-400 text-xl leading-relaxed font-medium">
+                At SkillPhantom, our focus is 100% on practical knowledge. We believe your code should speak louder than your paperwork.
               </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 transition hover:border-blue-500/50">
-                   <span className="text-2xl">⚡</span>
-                   <div>
-                     <h4 className="font-bold text-white">Skill Mastery</h4>
-                     <p className="text-sm text-gray-500">Master AI, Cyber Security, and Web Dev with real project deployment.</p>
-                   </div>
-                </div>
-                <div className="flex items-start gap-4 p-4 rounded-2xl bg-blue-600/5 border border-blue-500/20 transition hover:border-blue-500/50">
-                   <span className="text-2xl">📜</span>
-                   <div>
-                     <h4 className="font-bold text-white">Official Certification</h4>
-                     <p className="text-sm text-gray-500">Get industry-recognized certificates as proof of your technical expertise.</p>
-                   </div>
-                </div>
+              
+              <div className="space-y-6">
+                {[
+                  { icon: "⚡", h: "Skill Mastery", p: "Master AI, Cyber Security, and Web Dev with real project deployment." },
+                  { icon: "📜", h: "Official Proof", p: "Get industry-recognized certificates as proof of your technical expertise." }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-6 p-6 rounded-[2rem] bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 group hover:border-blue-500 transition-all shadow-sm">
+                    <span className="text-3xl">{item.icon}</span>
+                    <div>
+                      <h4 className="font-black text-slate-900 dark:text-white text-lg">{item.h}</h4>
+                      <p className="text-sm text-slate-500 dark:text-gray-500 font-medium mt-1">{item.p}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
             
             <div className="grid grid-cols-2 gap-6 relative">
-              <div className="absolute inset-0 bg-blue-600/10 blur-[100px] rounded-full" />
+              <div className="absolute inset-0 bg-blue-600/5 blur-[120px] rounded-full" />
               {[
-                { n: "300+", t: "Global Students" },
+                { n: "300+", t: "Students" },
                 { n: "5+", t: "Countries" },
-                { n: "100%", t: "Mentor Led" },
-                { n: "Live", t: "Project Sessions" }
+                { n: "100%", t: "Live Mentor" },
+                { n: "Project", t: "Based Learning" }
               ].map((stat, i) => (
-                <div key={i} className="relative p-10 bg-black border border-white/10 rounded-3xl text-center group hover:border-blue-500/50 transition-all">
-                  <h3 className="text-4xl font-bold text-blue-500 mb-2">{stat.n}</h3>
-                  <p className="text-xs text-gray-500 uppercase tracking-widest">{stat.t}</p>
+                <div key={i} className="relative p-12 bg-white dark:bg-black border border-slate-200 dark:border-white/10 rounded-[2.5rem] text-center shadow-sm hover:shadow-xl dark:hover:border-blue-500/40 transition-all group">
+                  <h3 className="text-5xl font-black text-blue-600 mb-2 group-hover:scale-110 transition-transform">{stat.n}</h3>
+                  <p className="text-[10px] text-slate-400 dark:text-gray-500 font-black uppercase tracking-[0.2em]">{stat.t}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ================= 3. PROGRAM DOMAINS (THE CORE) ================= */}
+        {/* ================= 3. MODELS ================= */}
         <section id="explore" className="relative z-10 py-32 px-6 max-w-7xl mx-auto">
           <div className="text-center mb-24">
-            <h2 className={`${outfit.className} text-5xl md:text-7xl font-bold`}>The Skill Models</h2>
-            <p className="text-gray-500 mt-6 text-xl">High-demand tech domains delivered with practical clarity.</p>
+            <h2 className={`${outfit.className} text-5xl md:text-8xl font-black text-slate-900 dark:text-white`}>The Skill Models.</h2>
+            <p className="text-slate-500 dark:text-gray-500 mt-6 text-xl font-medium uppercase tracking-widest">Bridging foundations to careers.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            
+          <div className="grid lg:grid-cols-2 gap-10">
             {/* SCHOOL MODEL */}
-            <motion.div whileHover={{ y: -10 }} className="p-12 rounded-[3rem] bg-gradient-to-b from-white/[0.05] to-transparent border border-white/10 flex flex-col justify-between">
+            <motion.div whileHover={{ y: -10 }} className="p-12 rounded-[4rem] bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 flex flex-col justify-between shadow-sm hover:shadow-2xl transition-all">
               <div>
-                <span className="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-400 font-bold tracking-widest uppercase">Model 01: School</span>
-                <h3 className={`${outfit.className} text-4xl font-bold mt-6 mb-6`}>Foundation of Future</h3>
-                <p className="text-gray-400 text-lg mb-10 leading-relaxed">Students of Grade 6-12 learn Cyber Security, AI/ML, and Networking through logic-building sessions.</p>
+                <span className="px-5 py-2 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-[10px] text-slate-500 dark:text-gray-400 font-black tracking-widest uppercase">Model 01: Foundations</span>
+                <h3 className={`${outfit.className} text-4xl md:text-5xl font-black mt-8 mb-6 text-slate-900 dark:text-white`}>School Program</h3>
+                <p className="text-slate-500 dark:text-gray-400 text-lg mb-10 leading-relaxed font-medium">Students of Grade 6-12 learn Cyber Security, AI, and Networking through logic-building sessions.</p>
                 <div className="flex flex-wrap gap-3 mb-12">
-                   {["Cyber Sec", "AI/ML", "Web Dev", "Logic"].map(s => (
-                     <span key={s} className="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg text-xs font-bold">{s}</span>
+                   {["Cyber Sec", "AI/ML", "Web", "Logic"].map(s => (
+                     <span key={s} className="px-4 py-1.5 bg-blue-600/5 text-blue-600 border border-blue-600/10 rounded-xl text-xs font-black uppercase tracking-tight">{s}</span>
                    ))}
                 </div>
               </div>
-              <Link href="/school" className="w-full py-5 bg-white text-black font-extrabold rounded-2xl text-center hover:bg-blue-600 hover:text-white transition-all">Go to School Portal →</Link>
+              <Link href="/school" className="w-full py-6 bg-slate-900 dark:bg-white text-white dark:text-black font-black rounded-[2rem] text-center hover:bg-blue-600 dark:hover:bg-blue-600 dark:hover:text-white transition-all shadow-lg">View School Portal →</Link>
             </motion.div>
 
             {/* INTERNSHIP MODEL */}
-            <motion.div whileHover={{ y: -10 }} className="p-12 rounded-[3rem] bg-gradient-to-b from-blue-600/10 to-transparent border border-blue-500/20 flex flex-col justify-between shadow-[0_30px_60px_rgba(37,99,235,0.05)]">
+            <motion.div whileHover={{ y: -10 }} className="p-12 rounded-[4rem] bg-blue-600 text-white flex flex-col justify-between shadow-2xl shadow-blue-600/20">
               <div>
-                <span className="px-4 py-1 rounded-full bg-blue-600/10 border border-blue-600/20 text-xs text-blue-400 font-bold tracking-widest uppercase">Model 02: Internship</span>
-                <h3 className={`${outfit.className} text-4xl font-bold mt-6 mb-6 text-blue-400`}>Career Acceleration</h3>
-                <p className="text-gray-400 text-lg mb-10 leading-relaxed">Practical oriented Offline & Online internships for college students. Direct mentor access via G-Meet globally.</p>
-                <p className="text-[10px] text-gray-600 font-mono tracking-widest mb-8">GLOBAL REACH: OMAN • SA • CANADA • NEPAL • BANGLADESH</p>
+                <span className="px-5 py-2 rounded-full bg-white/20 border border-white/20 text-[10px] text-white font-black tracking-widest uppercase">Model 02: Career</span>
+                <h3 className={`${outfit.className} text-4xl md:text-5xl font-black mt-8 mb-6`}>Internships</h3>
+                <p className="text-blue-100 text-lg mb-10 leading-relaxed font-medium">Practical Offline & Online internships for college graduates. Industry deployment and direct mentor access.</p>
+                <div className="p-6 bg-white/10 rounded-3xl backdrop-blur-md border border-white/20 mb-8">
+                  <p className="text-[10px] font-black tracking-[0.3em] uppercase opacity-80 mb-4">International Cohorts</p>
+                  <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    {["OMAN", "CANADA", "NEPAL", "SA", "BD"].map(c => <span key={c} className="text-sm font-black tracking-tighter">{c}</span>)}
+                  </div>
+                </div>
               </div>
-              <Link href="/internship" className="w-full py-5 bg-blue-600 text-white font-extrabold rounded-2xl text-center hover:shadow-[0_0_30px_rgba(37,99,235,0.3)] transition-all">Go to Internship Portal →</Link>
+              <Link href="/internship" className="w-full py-6 bg-white text-blue-600 font-black rounded-[2rem] text-center hover:bg-slate-900 hover:text-white transition-all shadow-xl">Launch Career →</Link>
             </motion.div>
-
           </div>
         </section>
 
-        {/* ================= 4. GLOBAL MENTORSHIP BAR ================= */}
-        <section className="relative z-10 py-20 px-6 text-center border-t border-white/5 bg-white/[0.01]">
-          <h2 className={`${outfit.className} text-3xl font-bold mb-10 text-gray-500`}>Taught Globally Across</h2>
-          <div className="flex flex-wrap justify-center gap-10 md:gap-24 items-center opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-             {["OMAN", "CANADA", "NEPAL", "SAUDI ARABIA", "BANGLADESH"].map(c => (
-               <span key={c} className="text-xl md:text-3xl font-black tracking-tighter">{c}</span>
-             ))}
-          </div>
-        </section>
-
-        {/* ================= 5. FINAL CALL TO ACTION ================= */}
+        {/* ================= 4. FINAL CTA ================= */}
         <footer className="relative z-10 pt-32 pb-48 px-6 text-center">
-          <div className="absolute inset-0 z-0 bg-blue-600/10 blur-[150px] rounded-full max-w-2xl mx-auto h-96" />
+          <div className="absolute inset-0 z-0 bg-blue-600/5 dark:bg-blue-600/10 blur-[150px] rounded-full max-w-4xl mx-auto h-[500px]" />
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} className="relative z-10">
-            <h2 className={`${outfit.className} text-6xl md:text-8xl font-black mb-12`}>Join the <br/><span className="text-blue-500">Phantom Cohort.</span></h2>
-            <Link href="/contact" className="px-16 py-6 bg-blue-600 text-white font-black text-2xl rounded-full hover:bg-blue-700 transition transform hover:scale-105 shadow-[0_10px_50px_rgba(37,99,235,0.4)]">
+            <h2 className={`${outfit.className} text-6xl md:text-9xl font-black mb-14 tracking-tighter text-slate-900 dark:text-white`}>Join the <br/><span className="text-blue-600 underline decoration-blue-500/20 underline-offset-[12px]">Phantom Cohort.</span></h2>
+            <Link href="/contact" className="px-20 py-8 bg-blue-600 text-white font-black text-2xl rounded-full hover:bg-slate-900 dark:hover:bg-white dark:hover:text-black transition transform hover:scale-105 shadow-2xl shadow-blue-600/40">
               Start Your Journey
             </Link>
-            <div className="mt-20 flex justify-center gap-12 text-sm text-gray-500 font-bold uppercase tracking-widest">
-               <Link href="/school" className="hover:text-blue-400">School Program</Link>
-               <Link href="/internship" className="hover:text-blue-400">Internship Program</Link>
-               <Link href="/contact" className="hover:text-blue-400">Contact Us</Link>
-            </div>
-            <p className="mt-12 text-[10px] text-gray-800 font-mono tracking-[0.5em]">SKILLPHANTOM TECHNOLOGIES • GLOBAL HUB • 2026</p>
+
           </motion.div>
         </footer>
 

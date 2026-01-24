@@ -4,7 +4,10 @@ import ClientLayout from "./components/ClientLayout";
 import { AppThemeProvider } from "./components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "SkillPhantom Technologies | Internships & Skill Development",
+  title: {
+    default: "SkillPhantom Technologies",
+    template: "%s | SkillPhantom",
+  },
   description:
     "SkillPhantom Technologies builds future-ready skills through internships, school programs, and industry-aligned training in Cybersecurity, AI/ML, Web Development, and more.",
   icons: {
