@@ -26,14 +26,15 @@ export default function AboutClient() {
     { 
       name: "Dishant Makwana", 
       role: "Founder", 
-      img: "/team/dishant.jpeg", 
+      img: "/team/Dishant.jpeg", 
       bio: "Dishant started SkillPhantom because he believes that skills are more important than just school marks.", 
-      portfolio: `https:/diishant-portfolio.vercel.app` 
+      portfolio: "https:/diishant-portfolio.vercel.app"
+  
     },
     { 
       name: "Srujal Chauhan", 
       role: "Co-Founder", 
-      img: "/team/srujal.png", 
+      img: "/team/Srujal.png", 
       bio: "Srujal makes sure that every student finds our lessons easy to understand and helpful for their career.", 
       portfolio: "https://srujal-portfolio-beige.vercel.app/" 
     }
