@@ -4,16 +4,16 @@ import ClientLayout from "./components/ClientLayout";
 import { AppThemeProvider } from "./components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: {
-    default: "SkillPhantom Technologies",
-    template: "%s | SkillPhantom",
+  title: 'SkillPhantom Technologies | Bridging the Industry-Academia Gap',
+  description: 'SkillPhantom Technologies provides industrial-grade training in Cybersecurity and Web Architecture.',
+  openGraph: {
+    title: 'SkillPhantom Technologies - Official',
+    description: 'Master industrial skills with expert-led training.',
+    url: 'https://skillphantomtechnologies.in/',
+    siteName: 'SkillPhantom Technologies',
+    images: [{ url: '/logo.png' }],
   },
-  description:
-    "SkillPhantom Technologies builds future-ready skills through internships, school programs, and industry-aligned training in Cybersecurity, AI/ML, Web Development, and more.",
-  icons: {
-    icon: "/favicon.ico",
-  },
-};
+}
 
 export default function RootLayout({
   children,
