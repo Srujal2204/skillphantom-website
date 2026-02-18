@@ -156,7 +156,7 @@ export default function BlogsPage() {
             animate={{ opacity: 1 }}
             className="text-center py-32 border border-white/5 rounded-[4rem] bg-zinc-900/10 backdrop-blur-sm"
           >
-            <h2 className="text-5xl font-black text-zinc-800 uppercase italic mb-4">No Intel Logged</h2>
+            <h2 className="text-5xl font-black text-zinc-800 uppercase italic mb-4">Coming Soon...</h2>
             <p className="text-zinc-600 uppercase tracking-widest text-[10px] font-bold">Awaiting deployment from central command.</p>
           </motion.div>
         )}
